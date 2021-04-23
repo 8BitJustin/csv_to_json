@@ -24,11 +24,11 @@ def make_json(csv_path, json_path):
     }
 
     with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
-        jsonp.write(json.dumps(output, indent=4))
+        jsonp.write(json.dumps(output, indent=2))
 
 
 csv_path = r'elearning Test Records_v2.csv'
-json_path = r'elearning Test Records_v2_test_01.json'
+json_path = r'elearning Test Records_v2_indent_test_01.json'
 
 make_json(csv_path, json_path)
 
