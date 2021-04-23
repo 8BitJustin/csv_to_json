@@ -19,12 +19,6 @@ def make_json(csv_path, json_path):
 
             data.append(row)
 
-        # for row in csv_reader:
-        #     row = {key: (None if value == "" else value) for key, value in
-        #            row.items()}
-        #
-        #     data.append(row)
-
     with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
         jsonp.write(json.dumps(data, indent=4))
 
