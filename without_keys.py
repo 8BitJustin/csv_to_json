@@ -19,12 +19,16 @@ def make_json(csv_path, json_path):
 
             data.append(row)
 
+    output = {
+        "test": data
+    }
+
     with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
-        jsonp.write(json.dumps(data, indent=4))
+        jsonp.write(json.dumps(output, indent=4))
 
 
 csv_path = r'elearning Test Records_v2.csv'
-json_path = r'elearning Test Records_v2.json'
+json_path = r'elearning Test Records_v2_test_01.json'
 
 make_json(csv_path, json_path)
 
