@@ -8,8 +8,6 @@ start = time()
 def make_json(csv_path):
     data = []
 
-    counter = 0
-
     with open(csv_path, encoding='utf-8-sig') as csvp:
 
         csv_reader = csv.DictReader(csvp)
@@ -21,24 +19,36 @@ def make_json(csv_path):
                     del row[k]
 
             data.append(row)
-            counter += 1
 
-            if counter%10 == 0:
-                json_path = rf'test{counter}.json'
-                with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
-                    jsonp.write(json.dumps(data, indent=2))
+    data_len = len(data)
+    data_len_tens = len(data) // 10 * 10
+    data_extra = data_len - data_len_tens
+    remaining = data[-data_extra:]
+    loop = 0
 
-                data = []
+    for i in range(len(data) // 10):
 
-    print(len(data))
+        output = {"items": data[10 * i:10 * (i + 1)]}
 
-    output = {
-        "test": data
-    }
+        json_path = rf"--{csv_path} - {i}0's.json"
+
+        with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
+            jsonp.write(json.dumps(output, indent=2))
+
+    for i in range(len(remaining)):
+
+        output = {"items": remaining[10 * i:10 * (i + 1)]}
+
+        json_path = rf"--{csv_path} - remaining {len(remaining)}.json"
+
+        with open(json_path, 'w', encoding='utf-8-sig') as jsonp:
+            jsonp.write(json.dumps(output, indent=2))
+
+        if loop == 0:
+            break
 
 
-csv_path = r'random.csv'
-
+csv_path = r'random114.csv'
 make_json(csv_path)
 
 print(f'Time taken to run: {time() - start} seconds')
