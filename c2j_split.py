@@ -20,9 +20,7 @@ def make_json(csv_path):
 
             data.append(row)
 
-    data_len = len(data)
-    data_len_tens = len(data) // 10 * 10
-    data_extra = data_len - data_len_tens
+    data_extra = len(data) - len(data) // 10 * 10
     remaining = data[-data_extra:]
     loop = 0
 
@@ -48,7 +46,7 @@ def make_json(csv_path):
             break
 
 
-csv_path = r'random114.csv'
+csv_path = r'random43.csv'
 make_json(csv_path)
 
 print(f'Time taken to run: {time() - start} seconds')
